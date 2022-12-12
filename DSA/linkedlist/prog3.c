@@ -55,10 +55,11 @@ void addnode(){
 void printll(){
 	node* temp=head;
 
-	while(temp!=NULL){
-		printf("|%d|",temp->data);
+	while(temp->next!=NULL){
+		printf("|%d|->",temp->data);
 		temp=temp->next;
 	}
+	printf("|%d|\n",temp->data);
 }
 
 
@@ -79,30 +80,30 @@ void addfirst(){
 
 //6
 void addlast(){
-
 	addnode();
 }
 
-
 //7
-void addatpos(int pos){
+int addatpos(int pos){
 
 	int count=counts();
-	if(pos<=0 || pos>count+1){
+	if(pos<=0 || pos>=count+2){
 		printf("invlid node position\n");
+		return -1;
 	}
 	else{
 		if(pos==1){
 			addfirst();
 		}
 		else if(pos==count+1){
-			addlast();
+			addnode();
 		}
 		else{
 			node* new=createnode();
 			node*temp=head;
 			while(pos-2){
 				temp=temp->next;
+				pos--;
 			}
 			new->next=temp->next;
 			temp->next=new;
@@ -180,20 +181,20 @@ int deleteatpos(int pos){
 }
 
 void main(){
-	char res;
-	int n;
-	printf("%d\n",sizeof(res));
+	
+	
 	while(1){		
-
-		printf("want to continue?\n");
-		getchar();
-		scanf("%c",&res);
-		if(res=="y"){
-			printf("1.addnode/n");
-			printf("2.addfirst/n");
-			printf("3.addlast/n");
-			printf("4.addatpos/n");
-			printf("5.deletefirst/n");
+		int n;
+		char result;
+	//	printf("want to continue?: ");
+	//	getc(stdin);
+		scanf(" %c",&result);
+		if(result=='y'){
+			printf("1.addnode\n");
+			printf("2.addfirst\n");
+			printf("3.addlast\n");
+			printf("4.addatpos\n");
+			printf("5.deletefirst\n");
 
 			scanf("%d",&n);
 			if(n==1){
@@ -211,6 +212,7 @@ void main(){
 			}
 			else if(n==4){
 				int p;
+				printf("enter pos\n");
 				scanf("%d",&p);
 				addatpos(p);
 			//	printll();
@@ -232,6 +234,59 @@ void main(){
 		}
 		printll();
 	}
+/*
+	addnode();
+	printll();
+	
+	addnode();
+	printll();
+	
+	addnode();
+	printll();
+	
+	addnode();
+	printll();
+	
+	addnode();
+	printll();
+	
+	printf("done adding nodes !\n");
+	
+	printf("adding first :\n");
+	addfirst();
+	printll();
+
+	addfirst();
+	printll();
+		
+	printf("adding last :\n");
+	addlast();
+	printll();
+
+	printf("adding at pos 3 :\n");
+	addatpos(3);
+	printll();
+
+	printf("adding at pos 7 :\n");
+	addatpos(7);
+	printll();
+
+	for(int i=0;i<4;i++){
+		printf("deleting node %d \n",i+1);
+		deleteatpos(i+1);
+		printll();
+	}
+
+	deletefirst();
+	printf("deleted first\n");
+	printll();
+
+
+	deletelast();
+	printf("deleted last\n");
+	printll();
+
+*/
 
 }
 
