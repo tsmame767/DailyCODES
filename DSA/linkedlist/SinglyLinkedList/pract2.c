@@ -53,6 +53,7 @@ void main(){
 	for(int i=0;i<n;i++){
 		addnode();
 		printll();
+	printf("hello\n");
 	}
 
 
